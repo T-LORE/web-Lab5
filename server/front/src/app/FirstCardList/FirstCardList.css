@@ -1,0 +1,52 @@
+/* FirstCardList.css */
+
+/* Стиль контейнера для карточек */
+.cardHolder {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Автоматически регулируемое количество колонок */
+    gap: 20px; /* Отступы между карточками */
+    padding: 20px;
+    justify-items: center; /* Выравнивание карточек по центру */
+    margin-top: 20px; /* Отступ сверху */
+    box-sizing: border-box;
+  }
+  
+  /* Стиль для заголовка */
+  .FirstCardList h1 {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Стиль для поля поиска */
+  .FirstCardList input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px; /* Максимальная ширина для поля поиска */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  /* Стиль кнопки "Добавить список" */
+  .FirstCardList button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Эффект при наведении на кнопку */
+  .FirstCardList button:hover {
+    background-color: #0056b3;
+  }
+  

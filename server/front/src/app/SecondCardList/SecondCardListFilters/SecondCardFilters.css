@@ -1,0 +1,82 @@
+/* Основной контейнер для фильтров */
+.SecondCardListFilters {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Заголовок фильтров */
+  .SecondCardListFilters__header {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  /* Поле поиска */
+  .SecondCardListFilters__search {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .SecondCardListFilters__search:focus {
+    border-color: #007bff;
+  }
+  
+  /* Обертка для кнопок фильтров */
+  .SecondCardListFilters__button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;  /* Убедимся, что кнопки могут переходить на новую строку, если нужно */
+  }
+  
+  /* Кнопки фильтров */
+  .SecondCardListFilters__button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 120px; /* Установим минимальную ширину для кнопок */
+  }
+  
+  .SecondCardListFilters__button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Кнопка сброса фильтров */
+  .SecondCardListFilters__reset {
+    background-color: #ff4f4f;
+    color: white;
+    margin-top: 15px;
+    width: 100%; /* Кнопка сброса будет на полной ширине */
+    padding: 12px;
+    border-radius: 6px;
+  }
+  
+  .SecondCardListFilters__reset:hover {
+    background-color: #e03d3d;
+  }
+  

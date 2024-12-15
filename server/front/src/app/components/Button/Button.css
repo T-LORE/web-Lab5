@@ -1,0 +1,35 @@
+/* Button.module.css */
+
+/* Base styles for the Button component */
+.Button {
+    padding: 12px 28px; /* Увеличенные отступы */
+    font-size: 1rem;
+    font-weight: 300;
+    background-color: #007bff; /* Синий цвет */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    outline: none;
+    margin: 20px;
+  }
+  
+  /* Hover effect */
+  .Button:hover {
+    background-color: #0056b3; /* Темный синий при наведении */
+    transform: translateY(-2px);
+  }
+  
+  /* Active button effect */
+  .Button:active {
+    background-color: #004085; /* Еще темнее при клике */
+    transform: translateY(0);
+  }
+  
+  /* Disabled button */
+  .Button:disabled {
+    background-color: #dcdfe3;
+    color: #999;
+    cursor: not-allowed;
+  }

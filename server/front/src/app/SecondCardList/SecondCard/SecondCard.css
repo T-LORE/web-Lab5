@@ -1,0 +1,111 @@
+/* SecondCard.css */
+
+/* Основной стиль для внутренней карточки */
+.SecondCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Эффект при наведении */
+  .SecondCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Заголовок внутри карточки */
+  .SecondCard-header {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  /* Описание внутри карточки */
+  .SecondCard-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Стиль для статуса */
+  .status-done {
+    color: #28a745; /* Зеленый цвет для "выполнено" */
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .status-pending {
+    color: #dc3545; /* Красный цвет для "не выполнено" */
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Стиль для кнопки */
+  .remove-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #ff4f4f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px; /* Ширина кнопки */
+  }
+  
+  /* Эффект при наведении на кнопку */
+  .remove-button:hover {
+    background-color: #e03d3d;
+  }
+
+  .done-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px; /* Ширина кнопки */
+  }
+
+.done-button:hover {
+    background-color: #218838;
+}
+
+.undone-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px; /* Ширина кнопки */
+}
+
+.undone-button:hover {
+    background-color: #c82333;
+}
+
+
+
+  

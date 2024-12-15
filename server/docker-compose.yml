@@ -12,12 +12,37 @@ services:
       - .env
     volumes:
       - data:/var/lib/postgresql/data
+    networks:
+      - todos-network  # Указываем, что db будет частью сети todos-network
 
   adminer:
     image: adminer
     restart: unless-stopped
     ports:
       - 8080:8080
+    networks:
+      - todos-network  # Указываем, что adminer будет частью сети todos-network
+
+  nextjs-app:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3005:3000"
+    volumes:
+      - ./front/src:/app/src:delegated
+      - /app/node_modules  # Исключаем node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+    networks:
+      - todos-network  # Указываем, что nextjs-app будет частью сети todos-network
 
 volumes:
   data:
+
+networks:
+  todos-network:  # Определяем сеть todos-network, к которой будут подключены все сервисы
+    driver: bridge  # Стандартный драйвер для сетей Docker, если не нужно использовать что-то специфическое

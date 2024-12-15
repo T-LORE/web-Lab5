@@ -1,12 +1,58 @@
 GET http://localhost:3000/api/users
+###
 
 GET http://localhost:3000/api/tasks
+###
+
+GET http://localhost:3000/api/lessons
+###
+DELETE http://localhost:3000/api/tasks/66e6ec71-e157-41fc-b7af-3d560fb7eaa1
+###
+POST http://localhost:3000/api/lessons
+Content-Type: application/json
+
+{
+  "name": "123",
+  "description": "321"
+}
+###
+PUT http://localhost:3000/api/tasks/6fbee131-b3bf-4a8c-93c7-2f4b6b0fc8a6
+Content-Type: application/json
+
+{
+  "name": "Updated Homework Task",
+  "description": "Updated description for the task",
+  "completed": true,
+  "lessonId": "96136e9f-0525-4794-b547-4430738bdf9c"
+}
+###
+PUT http://localhost:3000/api/lessons/fad252fe-7742-46d4-a4e5-af0e993716f4
+Content-Type: application/json
+
+{
+  "name": "asdasdasd",
+  "description": "asdasdasd"
+}
+###
+DELETE http://localhost:3000/api/lessons/a4421118-321d-4a89-9659-cdcb5f30d587
+###
+
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "name": "123",
+  "description": "123",
+  "completed": false,
+  "lessonId": "96136e9f-0525-4794-b547-4430738bdf9c"
+}
+###
 
 POST http://localhost:3000/api/users/signup
 Content-Type: application/json
 
 {
-  "email": "test1@mail.ru",
+  "email": "test2@mail.ru",
   "password": "123456"
 }
 
@@ -16,20 +62,22 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "test1@mail.ru",
+  "email": "test2@mail.ru",
   "password": "123456"
 }
 
-###
-
-POST http://localhost:3000/api/tasks
+### 
+# Login ADMIN
+POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "name": "Testtodo",
-  "description": "Testtodo description",
-  "completed": false
+  "email": "test2@mail.ru",
+  "password": "123456"
 }
+###
+
+
 
 
 

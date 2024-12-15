@@ -1,0 +1,62 @@
+/* Контейнер для всей страницы */
+.FirstCardList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  /* Блок фильтров */
+  .SecondCardListFilters {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Контейнер для карточек с возможностью прокрутки */
+  .SecondCardList__cards {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+  }
+  
+  /* Заголовок */
+  .SecondCardList h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Кнопки внизу */
+  .SecondCardList__buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  /* Кнопки */
+  .Button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .Button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Пояснение: Прокрутка будет работать в случае, если карточек больше, чем можно показать в отведенном месте */
+  

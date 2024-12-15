@@ -47,6 +47,8 @@ export function setToken(res: Response, data: object) {
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24,
     secure: process.env.NODE_ENV === 'production',
+    // secure: true,
+    // sameSite: 'none',
   })
   res.sendStatus(200)
 }

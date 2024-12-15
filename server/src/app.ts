@@ -6,8 +6,16 @@ import usersRouter from './features/users/usersRouter'
 import errorHandler from './lib/errorHandler'
 import taskRouter from './features/todos/tasksRouter'
 import lessonRouter from './features/lessons/lessonRouter'
+import cors from 'cors'  // Импортируем cors
 
 export const app = express()
+
+// Настроим CORS
+app.use(cors({
+  origin: 'http://127.0.0.1:3005', 
+  credentials: true  
+}))
+
 app.use(cookieParser())
 app.use(express.json())
 
