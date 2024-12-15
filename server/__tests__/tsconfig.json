@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../src/*"
+      ],
+      "@db/*": [
+        "../prisma/*"
+      ],
+    },
+  },
+  "include": [
+    "./**/*.ts", // Include all TypeScript files in '__tests__' directory
+  ]
+}
