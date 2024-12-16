@@ -13,12 +13,9 @@ export const app = express()
 // Настроим CORS
 app.use(
   cors({
-    origin: (origin: any, callback: any) => {
-      // Разрешить запросы от любого источника
-      callback(null, true);
-    },
+    origin: 'http://51.250.16.38:3005', // Явно указываем разрешенный источник
     credentials: true,
-  }),
+  })
 );
 
 app.use(cookieParser())

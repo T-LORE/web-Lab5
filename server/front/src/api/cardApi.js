@@ -1,7 +1,7 @@
 // import dotenv from 'dotenv';
 // dotenv.config();
 // const domain = process.env.BACKEND_DOMAIN +":3000"
-const domain = "127.0.0.1:3000"
+const domain = "51.250.16.38:3000"
 
 const getFistCards = async () => {
     try {
