@@ -1,0 +1,28 @@
+.button-logout-container {
+    display: flex;
+    justify-content: start;
+    margin-top: 20px;
+}
+
+/* Base styles for the Button component */
+.button-logout {
+    padding: 12px 28px; /* Увеличенные отступы */
+    font-size: 1rem;
+    font-weight: 300;
+    background-color:tomato;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    outline: none;
+    margin-left: 20px;
+  }
+  
+  
+  .button-logout:hover {
+    background-color: rgb(216, 125, 108);
+    transform: translateY(-2px);
+  }
+  
+  

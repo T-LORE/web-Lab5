@@ -1,15 +1,28 @@
+.main {
+  display: flex;
+}
+
 /* FirstCardList.css */
+.FirstCardList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
 
 /* Стиль контейнера для карточек */
 .cardHolder {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Автоматически регулируемое количество колонок */
-    gap: 20px; /* Отступы между карточками */
-    padding: 20px;
-    justify-items: center; /* Выравнивание карточек по центру */
-    margin-top: 20px; /* Отступ сверху */
-    box-sizing: border-box;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Сетка из 4 колонок */
+  gap: 20px; /* Отступы между карточками */
+  padding: 20px;
+  justify-items: center; /* Выравнивание карточек по центру */
+  margin-top: 20px; /* Отступ сверху */
+  box-sizing: border-box;
+}
   
   /* Стиль для заголовка */
   .FirstCardList h1 {

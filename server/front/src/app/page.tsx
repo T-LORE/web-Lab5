@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkAuth } from '../data/auth';
+import { checkAuth } from '../api/auth';
 
 export default function Home() {
   const router = useRouter();
@@ -12,9 +12,9 @@ export default function Home() {
       const isAuthorized = await checkAuth();
 
       if (isAuthorized) {
-        router.push('/FirstCardList'); // Перенаправляем на /lessons, если пользователь авторизован
+        router.push('/FirstCardList'); 
       } else {
-        router.push('/login'); // Перенаправляем на /login, если пользователь не авторизован
+        router.push('/login'); 
       }
     };
 

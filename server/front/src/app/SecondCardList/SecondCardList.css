@@ -1,3 +1,7 @@
+.main {
+  display: flex;
+}
+
 /* Контейнер для всей страницы */
 .FirstCardList {
     display: flex;
@@ -35,28 +39,8 @@
     margin-bottom: 15px;
   }
   
-  /* Кнопки внизу */
-  .SecondCardList__buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 15px;
-    margin-top: 20px;
-  }
-  
-  /* Кнопки */
-  .Button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .Button:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
+
+
   
   /* Пояснение: Прокрутка будет работать в случае, если карточек больше, чем можно показать в отведенном месте */
   

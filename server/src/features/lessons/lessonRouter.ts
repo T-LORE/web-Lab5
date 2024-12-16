@@ -18,9 +18,13 @@ lessonRouter.get('/', verifyToken, async (req, res) => {
       userId,
     },
     include: {
-        secondCards: true,
+      secondCards: true,
     },
-  })
+    orderBy: {
+      name: 'asc',
+    },
+  });
+
 
   res.json(lessons)
 

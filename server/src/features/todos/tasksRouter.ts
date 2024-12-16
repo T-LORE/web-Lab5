@@ -16,7 +16,11 @@ taskRouter.get('/', verifyToken, async (req, res) => {
     where: {
       userId,
     },
-  })
+    orderBy: {
+      name: 'asc',
+    },
+  });
+  
   res.status(200).json(todos)
 })
 

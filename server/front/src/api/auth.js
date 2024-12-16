@@ -45,5 +45,50 @@ const checkAuth = async () => {
     }
 };
 
-export default login;
-export { checkAuth };
+const logout = async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:3000/api/users/logout', {
+        method: 'POST',
+        credentials: 'include', // Отправляем куки
+        });
+
+        if (!response.ok) {
+            console.error('Logout failed');
+            return false; // Возвращаем false, если логаут не удался
+        }
+
+        console.log('Logout successful');
+        return true; // Возвращаем true, если логаут успешен
+    } catch (error) {
+        console.error('Error during logout:', error);
+        return false; // Возвращаем false, если произошла ошибка
+    }
+}
+
+const register = async(email, password) => {
+    try {
+        const response = await fetch('http://127.0.0.1:3000/api/users/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }), // Отправляем email и password, если сервер ожидает эти поля
+            credentials: 'include', // Отправляем куки
+        });
+
+        if (!response.ok) {
+            throw response;
+        }
+
+        if (response.status === 409) {
+            throw response;
+        }
+        
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+export { checkAuth, logout, register, login };

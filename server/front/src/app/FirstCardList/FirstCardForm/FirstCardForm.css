@@ -1,0 +1,83 @@
+/* Контейнер формы */
+.FirstCardForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+/* Заголовок формы */
+.FirstCardForm h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Поля ввода */
+.FirstCardForm input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.FirstCardForm input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+/* Чекбокс */
+.FirstCardForm input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+/* Блок с чекбоксом */
+.FirstCardForm .checkbox-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+/* Кнопки */
+.FirstCardForm button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.FirstCardForm button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.FirstCardForm button:first-child:hover {
+    background-color: #0056b3;
+}
+
+.FirstCardForm button:last-child {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.FirstCardForm button:last-child:hover {
+    background-color: #e0e0e0;
+}

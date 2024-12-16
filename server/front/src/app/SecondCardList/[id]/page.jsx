@@ -5,37 +5,58 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import SecondCardList from '../SecondCardList.jsx'; // Путь к компоненту SecondCardList
-import { getFirstCard } from '../../../data/cardFetcher.js';  // Импорт функции для получения данных
+import { getFirstCard } from '../../../api/cardApi.js'; // Путь к функции getFirstCard
 
 export default function SecondListPage({ params }) {
   // Unwrap the params using React.use()
   const { id } = React.use(params);
   const [listData, setListData] = useState(null);
   const router = useRouter();
-
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  // Загрузка карточек с сервера
   useEffect(() => {
-    if (id) {
-      const fetchListData = async () => {
-        try {
-          const data = await getFirstCard(id);  // Получаем данные для второго списка
-          setListData(data);  // Сохраняем данные в состояние
-        } catch (error) {
-          console.error("Ошибка загрузки данных:", error);
+    async function fetchCards() {
+      try {
+        const data = await getFirstCard(id);
+        console.log(data)
+        setListData(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        if (error.status === 401) {
+          setErrorMessage("Ошибка авторизации");
+          setIsLoading(false);
+          router.push('/');  // Перенаправление на главную страницу
+        } else {
+          setErrorMessage("Ошибка");
+          setIsLoading(false);
         }
-      };
-
-      fetchListData();  
+      }
     }
-  }, [id]);  
+
+    fetchCards();
+  }, [id]);
   
-  if (!listData) {
+  if (isLoading) {
     return <div>Загрузка...</div>;
   }
-  console.log(listData);
+
+  if (errorMessage) {
+    return <div>{errorMessage}</div>;
+  }
+// length
+
+  if (!isLoading && listData && listData.secondCards.length > 0) {
+    
+    listData.secondCards.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  
+
   return (
     <div>
       <SecondCardList
-        id={listData.id}
+        lessonId={id}
         name={listData.name}
         description={listData.description}
         secondCards={listData.secondCards}

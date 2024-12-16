@@ -3,27 +3,42 @@
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import './SecondCard.css';
+import { updateSecondCard } from "@/api/cardApi";
 
-export default function SecondCard({ id, name, description, status, onRemoveClick, onEditClick, onDoneClick, onUndoneClick }) {
+export default function SecondCard({ id, name, description, status, lessonID, onRemoveClick, onEditClick, onDoneClick, onUndoneClick }) {
   var statusView = null;
   var isDone = status;
   if (status) {
-    statusView = <h3 className="status-done">выполнено</h3>;
+    statusView = <h4 className="status-done">Выполнено</h4>;
   } else {
-    statusView = <h4 className="status-pending">не выполнено</h4>;
+    statusView = <h4 className="status-pending">Не выполнено</h4>;
+  }
+
+  function handleDoneClick() {
+    updateSecondCard(id, name, description, true, lessonID);
+    onDoneClick(id);
+    
+  }
+
+  function handleUndoneClick() {
+    updateSecondCard(id, name, description, false, lessonID);
+    onUndoneClick(id);
   }
 
   return (
     <div className="SecondCard">
         <h2 className="SecondCard-header">{name}</h2>
         <p className="SecondCard-description">{description}</p>
-        {statusView}
+        
+        <div className="buttons">
+          {statusView}
+
+        </div>
+          {!isDone ? <button onClick={() => handleDoneClick(id)} className="done-button">Выполнить</button> : null}
+          {isDone ? <button onClick={() => handleUndoneClick(id)} className="undone-button">Отменить</button> : null} 
         <Button onClick={() => onRemoveClick(id)} className="remove-button">Удалить</Button>
         <Button onClick={() => onEditClick(id)} className="edit-button">Редактировать</Button>
-        {!isDone ? <button onClick={() => onDoneClick(id)} className="done-button">Выполнить</button> : null}
-        {isDone ?
-            <button onClick={() => onUndoneClick(id)} className="undone-button">Отменить выполнение</button>
-            : null}
+
     </div>
   );
 }

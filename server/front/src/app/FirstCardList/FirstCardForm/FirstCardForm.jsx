@@ -1,16 +1,23 @@
+"use client";
+
 import Button from "../../components/Button/Button";
 import { useState } from "react";
+import './FirstCardForm.css';
 
 export default function FirstCardForm({ cardData = { id: null, header: '', description: '' }, onAddClick, backToCardList, onEditClick }) {
-    const safeCardData = cardData || { id: null, header: '', description: '' };
-    
-    const [header, setHeader] = useState(safeCardData.name);
+    // Используем безопасное значение по умолчанию
+    const safeCardData = {
+        id: cardData?.id ?? null,
+        header: cardData?.name ?? '',
+        description: cardData?.description ?? '',
+    };
+
+    const [header, setHeader] = useState(safeCardData.header);
     const [description, setDescription] = useState(safeCardData.description);
 
     const handleAddClick = () => {
         if (header.trim() && description.trim()) {
-            onAddClick(safeCardData.id, header, description );
-            backToCardList();
+            onAddClick(safeCardData.id, header, description);
         } else {
             alert('Заполните все поля!');
         }
@@ -18,16 +25,15 @@ export default function FirstCardForm({ cardData = { id: null, header: '', descr
 
     const handleEditClick = () => {
         if (header.trim() && description.trim()) {
-            onEditClick(safeCardData.id, header, description );
-            backToCardList();
+            onEditClick(safeCardData.id, header, description);
         } else {
             alert('Заполните все поля!');
         }
-    }
+    };
 
-    return (     
+    return (
         <div className="FirstCardForm">
-            <h2>Добавить карточку</h2>
+            {safeCardData.id == null ? <h2>Добавить карточку</h2> : <h2>Редактировать карточку</h2>}
             <input
                 type="text"
                 placeholder="Header"
@@ -40,8 +46,12 @@ export default function FirstCardForm({ cardData = { id: null, header: '', descr
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            {safeCardData.id == null ? <Button onClick={handleAddClick}>Добавить</Button> : <Button onClick={handleEditClick}>Сохранить</Button>}
+            {safeCardData.id == null ? (
+                <Button onClick={handleAddClick}>Добавить</Button>
+            ) : (
+                <Button onClick={handleEditClick}>Сохранить</Button>
+            )}
             <Button onClick={backToCardList}>Назад</Button>
         </div>
-    )
-  }
+    );
+}

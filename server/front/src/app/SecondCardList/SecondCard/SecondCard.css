@@ -12,6 +12,16 @@
     width: 100%;
     box-sizing: border-box;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    align-content: center;
+
   }
   
   /* Эффект при наведении */
@@ -42,12 +52,14 @@
     color: #28a745; /* Зеленый цвет для "выполнено" */
     font-size: 1.2rem;
     margin-bottom: 15px;
+    width: 200px;
   }
   
   .status-pending {
     color: #dc3545; /* Красный цвет для "не выполнено" */
     font-size: 1.2rem;
     margin-bottom: 15px;
+    width: 200px;
   }
   
   /* Стиль для кнопки */
@@ -62,17 +74,18 @@
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 150px; /* Ширина кнопки */
+    width: 150px; 
+    height: 50px;
   }
   
-  /* Эффект при наведении на кнопку */
+  
   .remove-button:hover {
     background-color: #e03d3d;
   }
 
   .done-button {
     display: block;
-    margin: 20px auto 0;
+    /* margin: 20px auto 0; */
     padding: 12px 24px;
     font-size: 1rem;
     background-color: #28a745;
@@ -81,7 +94,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 150px; /* Ширина кнопки */
+    width: 150px; 
   }
 
 .done-button:hover {
@@ -90,7 +103,7 @@
 
 .undone-button {
     display: block;
-    margin: 20px auto 0;
+    /* margin: 20px auto 0; */
     padding: 12px 24px;
     font-size: 1rem;
     background-color: #dc3545;
@@ -106,6 +119,16 @@
     background-color: #c82333;
 }
 
-
+button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
   

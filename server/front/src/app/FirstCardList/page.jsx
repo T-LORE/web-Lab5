@@ -6,6 +6,8 @@ import FirstCardForm from "./FirstCardForm/FirstCardForm";
 import { useState, useEffect } from "react";
 import "./FirstCardList.css";
 import { useRouter } from 'next/navigation'; 
+import { createFirstCard, deleteFirstCard, updateFirstCard, getFistCards } from "../../api/cardApi";
+import ButtonLogout from "../components/ButtonLogout/ButtonLogout";
 
 export default function FirstCardList({onCardAdd, onRemoveCard }) {
   const [cards, setCards] = useState([]);
@@ -20,22 +22,19 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
   useEffect(() => {
     async function fetchCards() {
       try {
-        const response = await fetch("http://127.0.0.1:3000/api/lessons", {
-          method: "GET",
-          credentials: "include", // Указываем, что нужно отправлять куки
-        });
-
-        if (!response.ok) {
-          throw new Error("Не удалось загрузить карточки");
-        }
-
-        const data = await response.json();
+        const data = await getFistCards();
         setCards(data);
         setFilteredCards(applyNameFilter(data, searchTerm));
         setLoading(false);
       } catch (error) {
-        setError(error.message);
-        setLoading(false);
+        if (error.status === 401) {
+          setError("Ошибка авторизации");
+          setLoading(false);
+          router.push('/');  // Перенаправление на главную страницу
+        } else {
+          setError("Ошибка");
+          setLoading(false);
+        }
       }
     }
 
@@ -66,25 +65,39 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
 
   // Добавление новой карточки
   function addFirstCard(id, name = "Новый список", description = "Описание") {
-    const newCard = {
-      id: Math.max(...cards.map((card) => card.id)) + 1,
-      name: name,
-      description: description,
-      secondCards: [],
-    };
+    // const newCard = {
+    //   id: Math.max(...cards.map((card) => card.id)) + 1,
+    //   name: name,
+    //   description: description,
+    //   secondCards: [],
+    // };
 
-    const newCardList = [...cards, newCard];
-    setCards(newCardList);
-    setFilteredCards(applyNameFilter(newCardList, searchTerm));
-    onCardAdd(newCardList);
+    // const newCardList = [...cards, newCard];
+    // setCards(newCardList);
+    // setFilteredCards(applyNameFilter(newCardList, searchTerm));
+
+    // onCardAdd(newCardList);
+    const returnData = createFirstCard(name, description);
+    if (returnData) { 
+      window.location.reload()
+    } else {
+      alert('Ошибка при добавлении карточки');
+    }
+    
   }
 
   // Удаление карточки
   function removeFirstCard(id) {
-    const newCardList = cards.filter((card) => card.id !== id);
-    setCards(newCardList);
-    setFilteredCards(applyNameFilter(newCardList, searchTerm));
-    onRemoveCard(newCardList);
+    // const newCardList = cards.filter((card) => card.id !== id);
+    // setCards(newCardList);
+    // setFilteredCards(applyNameFilter(newCardList, searchTerm));
+    // onRemoveCard(newCardList);
+    const returnData = deleteFirstCard(id);
+    if (returnData) {
+      window.location.reload()
+    } else {
+      alert('Ошибка при удалении карточки');
+    }
   }
 
   // Открытие формы для создания новой карточки
@@ -100,19 +113,26 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
 
   // Редактирование карточки
   function editCard(id, name, description) {
-    const newCardList = cards.map((card) => {
-      if (card.id === id) {
-        card.name = name;
-        card.description = description;
-      }
-      return card;
-    });
-    setCards(newCardList);
-    setList(false);
+    // const newCardList = cards.map((card) => {
+    //   if (card.id === id) {
+    //     card.name = name;
+    //     card.description = description;
+    //   }
+    //   return card;
+    // });
+    // setCards(newCardList);
+    const returnData = updateFirstCard(id, name, description);
+    if (returnData) {
+      setList(false);
+      window.location.reload()
+    } else {
+      alert('Ошибка при обновлении карточки');
+    }
   }
 
   // Открытие формы редактирования
   function openEditForm(id) {
+
     setCardToEdit(cards.find((card) => card.id === id));
     setList(false);
   }
@@ -127,29 +147,32 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
 
   if (list) {
     return (
-      <div className="FirstCardList">
-        <h1>Список предметов</h1>
-        <input
-          type="text"
-          placeholder="Поиск по названию"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+      <div className="main">
+        <ButtonLogout/>
+        <div className="FirstCardList">
+          <h1>Список предметов</h1>
+          <input
+            type="text"
+            placeholder="Поиск по названию"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
 
-        <div className="cardHolder">
-          {filteredCards.map((card) => (
-            <FirstCard
-              key={card.id}
-              id={card.id}
-              header={card.name}
-              description={card.description}
-              onOpenClick={openSecondCardList}
-              onRemoveClick={removeFirstCard}
-              onEditClick={openEditForm}
-            />
-          ))}
+          <div className="cardHolder">
+            {filteredCards.map((card) => (
+              <FirstCard
+                key={card.id}
+                id={card.id}
+                header={card.name}
+                description={card.description}
+                onOpenClick={openSecondCardList}
+                onRemoveClick={removeFirstCard}
+                onEditClick={openEditForm}
+              />
+            ))}
+          </div>
+          <Button onClick={openNewCardForm}>Добавить список</Button>
         </div>
-        <Button onClick={openNewCardForm}>Добавить список</Button>
       </div>
     );
   } else {

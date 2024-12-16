@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { use, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Для роутинга
-import {login, checkAuth} from '../../api/auth.js'; // Подключаем вынесенную функцию
+import {register, checkAuth} from '../../api/auth.js'; // Подключаем вынесенную функцию
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -29,27 +29,42 @@ export default function LoginPage() {
     auth();
   });
 
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage('');
 
-    const success = await login(email, password); // Вызываем функцию логина
 
-    if (success) {
-      console.log('Логин успешен');
-      router.push('/FirstCardList'); // Перенаправляем на главную страницу или другую страницу после успешного логина
-    } else {
-      setMessage('Неверный email или пароль.');
+    try {
+        const success = await register(email, password); // Вызываем функцию регистрации
+
+        if (success) {
+        console.log('Регистрация успешна');
+        router.push('/FirstCardList'); // Перенаправляем на главную страницу или другую страницу после успешного логина
+        } else {
+        setMessage('Регистрация завершилась неуспешно');
+        }        
+    } catch (error) {
+        if (error.status === 409) {
+            setMessage('Пользователь с таким email уже существует');
+        } else {
+            console.error(error);
+            setMessage('Ошибка регистрации');
+        }   
     }
+    
+
+
   };
 
-  if (loading) {
+    if (loading) {
     return <div>Загрузка...</div>;
-  }
+    }
 
   return (
     <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px' }}>
-      <h1>Вход</h1>
+      <h1>Регистрация</h1>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
           <label>
@@ -76,14 +91,12 @@ export default function LoginPage() {
           </label>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>
-            Войти
-          </button>
-          <button type="button" onClick={() => router.push('/register')} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: 'white', border: 'none', cursor: 'pointer', marginLeft: '10px' }}> Регистрация </button>       
+            <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>
+            Зарегистрироваться
+            </button>
+            <button type="button" onClick={() => router.push('/login')} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: 'white', border: 'none', cursor: 'pointer', marginLeft: '10px' }}> Окно входа </button>
         </div>
       </form>
-
-      
       {message && <p style={{ marginTop: '20px', color: 'red' }}>{message}</p>}
     </div>
   );
