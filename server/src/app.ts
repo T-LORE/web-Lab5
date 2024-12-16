@@ -11,10 +11,15 @@ import cors from 'cors'  // Импортируем cors
 export const app = express()
 
 // Настроим CORS
-app.use(cors({
-  origin: 'http://127.0.0.1:3005', 
-  credentials: true  
-}))
+app.use(
+  cors({
+    origin: (origin: any, callback: any) => {
+      // Разрешить запросы от любого источника
+      callback(null, true);
+    },
+    credentials: true,
+  }),
+);
 
 app.use(cookieParser())
 app.use(express.json())

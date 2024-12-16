@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/users
+GET http://127.0.0.1:3000/api/users
 ###
 
 GET http://localhost:3000/api/tasks
@@ -52,7 +52,7 @@ POST http://localhost:3000/api/users/signup
 Content-Type: application/json
 
 {
-  "email": "test2@mail.ru",
+  "email": "testdf@mail.ru",
   "password": "123456"
 }
 
@@ -62,7 +62,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "test2@mail.ru",
+  "email": "test1@mail.ru",
   "password": "123456"
 }
 
@@ -72,7 +72,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "test2@mail.ru",
+  "email": "test1@mail.ru",
   "password": "123456"
 }
 ###

@@ -2,7 +2,6 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
-  
   "scripts": {
     "dev": "nodemon --watch . --ext js,jsx,ts,tsx,json --exec next dev",
     "build": "next build",
@@ -10,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "next": "15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

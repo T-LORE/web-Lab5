@@ -1,7 +1,12 @@
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const domain = process.env.BACKEND_DOMAIN +":3000"
+const domain = "127.0.0.1:3000"
+
 // auth.js - функция для логина пользователя
 const login = async (email, password) => {
     try {
-        const response = await fetch('http://127.0.0.1:3000/api/users/login', {
+        const response = await fetch(`http://${domain}/api/users/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -27,7 +32,7 @@ const login = async (email, password) => {
 // проверка авторизации
 const checkAuth = async () => {
     try {
-        const response = await fetch('http://127.0.0.1:3000/api/lessons', {
+        const response = await fetch(`http://${domain}/api/lessons`, {
         method: 'GET',
         credentials: 'include', // Отправляем куки
         });
@@ -47,7 +52,7 @@ const checkAuth = async () => {
 
 const logout = async () => {
     try {
-        const response = await fetch('http://127.0.0.1:3000/api/users/logout', {
+        const response = await fetch(`http://${domain}/api/users/logout`, {
         method: 'POST',
         credentials: 'include', // Отправляем куки
         });
@@ -67,7 +72,7 @@ const logout = async () => {
 
 const register = async(email, password) => {
     try {
-        const response = await fetch('http://127.0.0.1:3000/api/users/signup', {
+        const response = await fetch(`http://${domain}/api/users/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

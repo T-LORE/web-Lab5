@@ -1,6 +1,11 @@
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const domain = process.env.BACKEND_DOMAIN +":3000"
+const domain = "127.0.0.1:3000"
+
 const getFistCards = async () => {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/lessons", {
+        const response = await fetch(`http://${domain}/api/lessons`, {
             method: "GET",
             credentials: "include"
         });
@@ -19,7 +24,7 @@ const getFistCards = async () => {
 
 const getFirstCard = async (id) => {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/lessons", {
+        const response = await fetch(`http://${domain}/api/lessons`, {
             method: "GET",
             credentials: "include"
         });
@@ -40,7 +45,7 @@ const getFirstCard = async (id) => {
 const getSecondCards = async (id) => {
     try {
         // Запрашиваем все карточки с сервера
-        const response = await fetch('http://127.0.0.1:3000/api/tasks', {
+        const response = await fetch(`http://${domain}/api/tasks`, {
             method: "GET",
             credentials: "include", // Чтобы передавать куки с запросом
         });
@@ -62,7 +67,7 @@ const getSecondCards = async (id) => {
 const createSecondCard = async (lessonId, name, description, completed) => {
     try {
         console.log(lessonId, name, description, completed);
-        const response = await fetch('http://127.0.0.1:3000/api/tasks', {
+        const response = await fetch(`http://${domain}/api/tasks`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -91,7 +96,7 @@ const createSecondCard = async (lessonId, name, description, completed) => {
 
 const updateSecondCard = async (cardid, name, description, completed, lessonId) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/tasks/${cardid}`, {
+        const response = await fetch(`http://${domain}/api/tasks/${cardid}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -114,26 +119,26 @@ const updateSecondCard = async (cardid, name, description, completed, lessonId) 
 
 const deleteSecondCard = async (cardid) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/tasks/${cardid}`, {
+        const response = await fetch(`http://${domain}/api/tasks/${cardid}`, {
             method: "DELETE",
             credentials: "include",
         });
 
         if (!response.ok) {
-            throw new Error("Не удалось удалить карточку");
+            throw response;
         }
 
         return true;
     }
     catch (error) {
         console.error("Ошибка при удалении карточки:", error);
-        return false;
+        return error;
     }
 }
 
 const createFirstCard = async (name, description) => {
     try {
-        const response = await fetch('http://127.0.0.1:3000/api/lessons', {
+        const response = await fetch(`http://${domain}/api/lessons`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -143,19 +148,18 @@ const createFirstCard = async (name, description) => {
         });
 
         if (!response.ok) {
-            throw new Error("Не удалось создать карточку");
+            throw response;
         }
 
         return await response.json();
     } catch (error) {
-        console.error("Ошибка при создании карточки:", error);
-        return null;
+        throw error;
     }
 }
 
 const updateFirstCard = async (id, name, description) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/lessons/${id}`, {
+        const response = await fetch(`http://${domain}/api/lessons/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -177,7 +181,7 @@ const updateFirstCard = async (id, name, description) => {
 
 const deleteFirstCard = async (id) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/lessons/${id}`, {
+        const response = await fetch(`http://${domain}/api/lessons/${id}`, {
             method: "DELETE",
             credentials: "include",
         });
