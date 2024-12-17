@@ -50,7 +50,7 @@ services:
     env_file:
       - .env
     volumes:
-      - .keys/:/etc/ssl/certs
+      - ./keys:/server/keys
     # stdin_open: true
     # tty: true
     # environment:
