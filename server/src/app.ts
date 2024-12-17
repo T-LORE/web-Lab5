@@ -13,7 +13,7 @@ export const app = express()
 // Настроим CORS
 app.use(
   cors({
-    origin: 'http://51.250.16.38:3005', // Явно указываем разрешенный источник
+    origin: 'http://51.250.41.212:3005', // Явно указываем разрешенный источник
     credentials: true,
   })
 );

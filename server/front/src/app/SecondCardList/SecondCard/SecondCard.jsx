@@ -34,8 +34,8 @@ export default function SecondCard({ id, name, description, status, lessonID, on
           {statusView}
 
         </div>
-          {!isDone ? <button onClick={() => handleDoneClick(id)} className="done-button">Выполнить</button> : null}
-          {isDone ? <button onClick={() => handleUndoneClick(id)} className="undone-button">Отменить</button> : null} 
+        {!isDone ? <button onClick={() => handleDoneClick(id)} className="done-button">Выполнить</button> : null}
+        {isDone ? <button onClick={() => handleUndoneClick(id)} className="undone-button">Отменить</button> : null} 
         <Button onClick={() => onRemoveClick(id)} className="remove-button">Удалить</Button>
         <Button onClick={() => onEditClick(id)} className="edit-button">Редактировать</Button>
 
