@@ -5,8 +5,8 @@ import https from "https"
 const port = process.env.PORT || 3000
 
 // Подключение HTTPS
-const privateKey = fs.readFileSync("/etc/ssl/certs/privkey.pem", "utf8")
-const certificate = fs.readFileSync("/etc/ssl/certs/fullchain.pem", "utf8")
+const privateKey = fs.readFileSync("/server/keys/privkey.pem", "utf8")
+const certificate = fs.readFileSync("/server/keys/fullchain.pem", "utf8")
 const credentials = { key: privateKey, cert: certificate }
 
 // app.listen(port, () => {
