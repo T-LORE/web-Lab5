@@ -49,9 +49,8 @@ services:
       - "3000:3000"
     env_file:
       - .env
-    # volumes:
-    #   - ./front/src:/app/src:delegated
-    #   - /app/node_modules  
+    volumes:
+      - .keys/:/etc/ssl/certs
     # stdin_open: true
     # tty: true
     # environment:
