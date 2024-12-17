@@ -64,7 +64,7 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
   }
 
   // Добавление новой карточки
-  function addFirstCard(id, name = "Новый список", description = "Описание") {
+  async function addFirstCard(id, name = "Новый список", description = "Описание") {
     // const newCard = {
     //   id: Math.max(...cards.map((card) => card.id)) + 1,
     //   name: name,
@@ -77,9 +77,9 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
     // setFilteredCards(applyNameFilter(newCardList, searchTerm));
 
     // onCardAdd(newCardList);
-    const returnData = createFirstCard(name, description);
+    const returnData = await createFirstCard(name, description);
     if (returnData) { 
-      router.push('/FirstCardList');
+      window.location.reload();
     } else {
       alert('Ошибка при добавлении карточки');
     }
