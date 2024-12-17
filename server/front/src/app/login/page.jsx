@@ -25,8 +25,10 @@ export default function LoginPage() {
           
       }
     }
-
-    auth();
+    if (loading){
+      auth();
+    }
+    
   });
 
   const handleSubmit = async (event) => {
