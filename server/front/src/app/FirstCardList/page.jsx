@@ -87,12 +87,12 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
   }
 
   // Удаление карточки
-  function removeFirstCard(id) {
+  async function removeFirstCard(id) {
     // const newCardList = cards.filter((card) => card.id !== id);
     // setCards(newCardList);
     // setFilteredCards(applyNameFilter(newCardList, searchTerm));
     // onRemoveCard(newCardList);
-    const returnData = deleteFirstCard(id);
+    const returnData = await deleteFirstCard(id);
     if (returnData) {
       router.push('/FirstCardList');
     } else {
@@ -112,7 +112,7 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
   }
 
   // Редактирование карточки
-  function editCard(id, name, description) {
+  async function editCard(id, name, description) {
     // const newCardList = cards.map((card) => {
     //   if (card.id === id) {
     //     card.name = name;
@@ -121,7 +121,7 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
     //   return card;
     // });
     // setCards(newCardList);
-    const returnData = updateFirstCard(id, name, description);
+    const returnData = await updateFirstCard(id, name, description);
     if (returnData) {
       setList(false);
       router.push('/FirstCardList');

@@ -46,10 +46,10 @@ export default function SecondCardList({lessonId, name, description, secondCards
   const router = useRouter();
 
 
-  function editSecondCard(id, name, description, status) {
+  async function editSecondCard(id, name, description, status) {
     console.log(`EditSecondCard: ${id}, ${name}, ${description}, ${status}`);
     // onAddSecondCard(id, newSecondCards);
-    updateSecondCard(id, name, description, status, lesson);
+    const res = await updateSecondCard(id, name, description, status, lesson);
     window.location.reload()
   }
   
@@ -59,19 +59,19 @@ export default function SecondCardList({lessonId, name, description, secondCards
     setIsFormOpen(true);
   }
 
-  function addSecondCard(id, name = "Новый список", description = "Описание", status = false) {
+  async function addSecondCard(id, name = "Новый список", description = "Описание", status = false) {
 
     console.log(`ADdSecondCard: ${lesson}, ${name}, ${description}, ${status}`);
-    createSecondCard(lesson, name, description, status);
+    const res = await createSecondCard(lesson, name, description, status);
     window.location.reload()
     // onAddSecondCard(id, newSecondCards);
   }
 
-  function removeSecondCard(removedId) {
+  async function removeSecondCard(removedId) {
     // const newSecondCards = cardList.filter((card) => card.id !== removedId);
     // setCardList(newSecondCards);
     // onRemoveSecondCard(id, newSecondCards);
-    deleteSecondCard(removedId);
+    const res = await deleteSecondCard(removedId);
     window.location.reload()
   }
 
