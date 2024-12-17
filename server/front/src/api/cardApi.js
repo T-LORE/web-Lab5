@@ -1,7 +1,7 @@
 // import dotenv from 'dotenv';
 // dotenv.config();
 // const domain = process.env.BACKEND_DOMAIN +":3000"
-const domain = "51.250.41.212:3000"
+const domain = "tlore-web.duckdns.org:3000"
 
 const getFistCards = async () => {
     try {
