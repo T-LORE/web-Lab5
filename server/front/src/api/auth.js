@@ -6,7 +6,7 @@ const domain = "tlore-web.duckdns.org:3000"
 // auth.js - функция для логина пользователя
 const login = async (email, password) => {
     try {
-        const response = await fetch(`http://${domain}/api/users/login`, {
+        const response = await fetch(`https://${domain}/api/users/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const login = async (email, password) => {
 // проверка авторизации
 const checkAuth = async () => {
     try {
-        const response = await fetch(`http://${domain}/api/lessons`, {
+        const response = await fetch(`https://${domain}/api/lessons`, {
         method: 'GET',
         credentials: 'include', // Отправляем куки
         });
@@ -52,7 +52,7 @@ const checkAuth = async () => {
 
 const logout = async () => {
     try {
-        const response = await fetch(`http://${domain}/api/users/logout`, {
+        const response = await fetch(`https://${domain}/api/users/logout`, {
         method: 'POST',
         credentials: 'include', // Отправляем куки
         });
@@ -72,7 +72,7 @@ const logout = async () => {
 
 const register = async(email, password) => {
     try {
-        const response = await fetch(`http://${domain}/api/users/signup`, {
+        const response = await fetch(`https://${domain}/api/users/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

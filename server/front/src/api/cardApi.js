@@ -5,7 +5,7 @@ const domain = "tlore-web.duckdns.org:3000"
 
 const getFistCards = async () => {
     try {
-        const response = await fetch(`http://${domain}/api/lessons`, {
+        const response = await fetch(`https://${domain}/api/lessons`, {
             method: "GET",
             credentials: "include"
         });
@@ -24,7 +24,7 @@ const getFistCards = async () => {
 
 const getFirstCard = async (id) => {
     try {
-        const response = await fetch(`http://${domain}/api/lessons`, {
+        const response = await fetch(`https://${domain}/api/lessons`, {
             method: "GET",
             credentials: "include"
         });
@@ -45,7 +45,7 @@ const getFirstCard = async (id) => {
 const getSecondCards = async (id) => {
     try {
         // Запрашиваем все карточки с сервера
-        const response = await fetch(`http://${domain}/api/tasks`, {
+        const response = await fetch(`https://${domain}/api/tasks`, {
             method: "GET",
             credentials: "include", // Чтобы передавать куки с запросом
         });
@@ -67,7 +67,7 @@ const getSecondCards = async (id) => {
 const createSecondCard = async (lessonId, name, description, completed) => {
     try {
         console.log(lessonId, name, description, completed);
-        const response = await fetch(`http://${domain}/api/tasks`, {
+        const response = await fetch(`https://${domain}/api/tasks`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -96,7 +96,7 @@ const createSecondCard = async (lessonId, name, description, completed) => {
 
 const updateSecondCard = async (cardid, name, description, completed, lessonId) => {
     try {
-        const response = await fetch(`http://${domain}/api/tasks/${cardid}`, {
+        const response = await fetch(`https://${domain}/api/tasks/${cardid}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const updateSecondCard = async (cardid, name, description, completed, lessonId) 
 
 const deleteSecondCard = async (cardid) => {
     try {
-        const response = await fetch(`http://${domain}/api/tasks/${cardid}`, {
+        const response = await fetch(`https://${domain}/api/tasks/${cardid}`, {
             method: "DELETE",
             credentials: "include",
         });
@@ -138,7 +138,7 @@ const deleteSecondCard = async (cardid) => {
 
 const createFirstCard = async (name, description) => {
     try {
-        const response = await fetch(`http://${domain}/api/lessons`, {
+        const response = await fetch(`https://${domain}/api/lessons`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -159,7 +159,7 @@ const createFirstCard = async (name, description) => {
 
 const updateFirstCard = async (id, name, description) => {
     try {
-        const response = await fetch(`http://${domain}/api/lessons/${id}`, {
+        const response = await fetch(`https://${domain}/api/lessons/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -181,7 +181,7 @@ const updateFirstCard = async (id, name, description) => {
 
 const deleteFirstCard = async (id) => {
     try {
-        const response = await fetch(`http://${domain}/api/lessons/${id}`, {
+        const response = await fetch(`https://${domain}/api/lessons/${id}`, {
             method: "DELETE",
             credentials: "include",
         });
