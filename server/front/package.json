@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon --watch . --ext js,jsx,ts,tsx,json --exec next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {

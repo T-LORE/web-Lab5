@@ -28,10 +28,11 @@ services:
       context: ./front
       dockerfile: Dockerfile.dev
     ports:
-      - "80:3000"
+      - "443:443"
     volumes:
       - ./front/src:/app/src:delegated
-      - /app/node_modules  
+      - /app/node_modules
+      - ./keys:/keys        
     stdin_open: true
     tty: true
     environment:
