@@ -13,7 +13,7 @@ export const app = express()
 // Настроим CORS
 app.use(
   cors({
-    origin: 'http://tlore-web.duckdns.org', // Явно указываем разрешенный источник
+    origin: 'https://tlore-web.duckdns.org', // Явно указываем разрешенный источник
     credentials: true,
   })
 );
