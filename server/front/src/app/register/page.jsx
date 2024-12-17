@@ -25,8 +25,9 @@ export default function RegisterPage() {
           
       }
     }
-
-    auth();
+    if (loading){
+      auth();
+    }
   });
 
 
