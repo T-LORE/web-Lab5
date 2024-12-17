@@ -87,12 +87,12 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
   }
 
   // Удаление карточки
-  async function removeFirstCard(id) {
+  function removeFirstCard(id) {
     // const newCardList = cards.filter((card) => card.id !== id);
     // setCards(newCardList);
     // setFilteredCards(applyNameFilter(newCardList, searchTerm));
     // onRemoveCard(newCardList);
-    const returnData = await deleteFirstCard(id);
+    const returnData = deleteFirstCard(id);
     if (returnData) {
       router.push('/FirstCardList');
     } else {

@@ -128,7 +128,7 @@ const deleteSecondCard = async (cardid) => {
             throw response;
         }
 
-        return await response.json();
+        return true;
     }
     catch (error) {
         console.error("Ошибка при удалении карточки:", error);
@@ -190,7 +190,7 @@ const deleteFirstCard = async (id) => {
             throw new Error("Не удалось удалить карточку");
         }
 
-        return await response.json();
+        return response.json();
     }
     catch (error) {
         console.error("Ошибка при удалении карточки:", error);
