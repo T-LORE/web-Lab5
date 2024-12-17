@@ -79,7 +79,7 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
     // onCardAdd(newCardList);
     const returnData = createFirstCard(name, description);
     if (returnData) { 
-      window.location.reload()
+      setLoading(true);
     } else {
       alert('Ошибка при добавлении карточки');
     }
@@ -94,7 +94,7 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
     // onRemoveCard(newCardList);
     const returnData = deleteFirstCard(id);
     if (returnData) {
-      window.location.reload()
+      setLoading(true);
     } else {
       alert('Ошибка при удалении карточки');
     }
@@ -124,7 +124,7 @@ export default function FirstCardList({onCardAdd, onRemoveCard }) {
     const returnData = updateFirstCard(id, name, description);
     if (returnData) {
       setList(false);
-      window.location.reload()
+      setLoading(true);
     } else {
       alert('Ошибка при обновлении карточки');
     }
