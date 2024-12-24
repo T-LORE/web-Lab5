@@ -105,8 +105,8 @@ export default function SecondCardList({lessonId, name, description, secondCards
 
   return (
     <div className="main">
-      <ButtonLogout onClick={() => router.push('/')} />
       <div className="FirstCardList">
+      <ButtonLogout/>
         {isFormOpen ? (
           <SecondCardListForm
             cardData={editCardData}

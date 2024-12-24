@@ -16,11 +16,11 @@
 /* Стиль контейнера для карточек */
 .cardHolder {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Сетка из 4 колонок */
-  gap: 20px; /* Отступы между карточками */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Адаптивная сетка */
+  gap: 20px;
   padding: 20px;
-  justify-items: center; /* Выравнивание карточек по центру */
-  margin-top: 20px; /* Отступ сверху */
+  justify-items: center;
+  margin-top: 20px;
   box-sizing: border-box;
 }
   
