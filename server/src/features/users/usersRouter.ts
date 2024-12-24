@@ -134,19 +134,52 @@ usersRouter.post('/logout', verifyToken, async (req, res) => {
   res.sendStatus(200)
 })
 
+const defaultLessons = require('./defaultLessons'); // Путь к файлу defaultLessons
+
 usersRouter.post('/signup', async (req, res) => {
-  const { email, password } = await credentialsSchema.parseAsync(req.body)
-  const passHash = await createPasswordHash(password)
-  const user = await db.user.create({
-    data: {
-      email,
-      password: passHash,
-    },
-  })
-  setToken(res, {
-    id: user.id,
-    role: user.role,
-  })
-})
+  const { email, password } = await credentialsSchema.parseAsync(req.body);
+  const passHash = await createPasswordHash(password);
+
+  try {
+    const user = await db.user.create({
+      data: {
+        email,
+        password: passHash,
+        role: 'USER',
+        todoLists: {
+          create: defaultLessons.map((lesson: LessonWithTasks) => ({
+            name: lesson.name,
+            description: lesson.description,
+            secondCards: {
+              create: lesson.secondCards.map((task) => ({
+                name: task.name,
+                description: task.description,
+              })),
+            },
+          })),
+        },
+      },
+      select: {
+        id: true,
+        email: true,
+        role: true, // Добавлено поле role
+        todoLists: {
+          include: {
+            secondCards: true,
+          },
+        },
+      },
+    });
+
+    setToken(res, {
+      id: user.id,
+      role: user.role, // Теперь поле role доступно
+    });
+
+  } catch (error) {
+    console.error("Ошибка при создании пользователя:", error);
+    res.status(500).json({ error: "Не удалось создать пользователя" });
+  }
+});
 
 export default usersRouter
