@@ -67,11 +67,11 @@ export default function SecondCardList({lessonId, name, description, secondCards
     // onAddSecondCard(id, newSecondCards);
   }
 
-  function removeSecondCard(removedId) {
+  async function removeSecondCard(removedId) {
     // const newSecondCards = cardList.filter((card) => card.id !== removedId);
     // setCardList(newSecondCards);
     // onRemoveSecondCard(id, newSecondCards);
-    const res = deleteSecondCard(removedId);
+    const res = await deleteSecondCard(removedId);
     window.location.reload()
   }
 

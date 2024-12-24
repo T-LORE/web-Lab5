@@ -188,9 +188,10 @@ const deleteFirstCard = async (id) => {
 
         if (!response.ok) {
             throw new Error("Не удалось удалить карточку");
+        } else {
+            return true
         }
 
-        return response.json();
     }
     catch (error) {
         console.error("Ошибка при удалении карточки:", error);

@@ -87,14 +87,14 @@ export default function FirstCardList() {
   }
 
   // Удаление карточки
-  function removeFirstCard(id) {
+  async function removeFirstCard(id) {
     // const newCardList = cards.filter((card) => card.id !== id);
     // setCards(newCardList);
     // setFilteredCards(applyNameFilter(newCardList, searchTerm));
     // onRemoveCard(newCardList);
-    const returnData = deleteFirstCard(id);
+    const returnData = await deleteFirstCard(id);
     if (returnData) {
-      router.push('/FirstCardList');
+      window.location.reload();
     } else {
       alert('Ошибка при удалении карточки');
     }
@@ -148,8 +148,8 @@ export default function FirstCardList() {
   if (list) {
     return (
       <div className="main">
-        <ButtonLogout/>
         <div className="FirstCardList">
+        <ButtonLogout/>
           <h1>Список предметов</h1>
           <input
             type="text"
