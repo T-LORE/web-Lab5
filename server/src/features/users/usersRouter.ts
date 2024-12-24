@@ -109,25 +109,53 @@ usersRouter.delete('/:id', verifyToken, isSelf, async (req, res) => {
   res.sendStatus(200)
 })
 
-usersRouter.post('/login', async (req, res) => {
-  const { email, password } = await credentialsSchema.parseAsync(req.body)
-  const user = await db.user.findUnique({
-    where: {
-      email,
-    },
-  })
-  if (!user) {
-    throw new createHttpError.Unauthorized()
+const defaultLessons = require('../../db/defaultLessons.ts');
+
+usersRouter.post('/', verifyToken, isAdmin, async (req, res) => {
+  const { email, password, role, name } = await userCreateSchema.parseAsync(
+    req.body,
+  );
+  const passHash = await createPasswordHash(password);
+
+  try {
+    const user = await db.user.create({
+      data: {
+        email,
+        password: passHash,
+        role,
+        name,
+        todoLists: {
+          create: defaultLessons.map((lesson: LessonWithTasks) => ({
+            name: lesson.name,
+            description: lesson.description,
+            secondCards: {
+              create: lesson.secondCards.map((task) => ({
+                name: task.name,
+                description: task.description,
+              })),
+            },
+          })),
+        },
+      },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        name: true,
+        todoLists: {
+          include: {
+            secondCards: true,
+          },
+        },
+      },
+    });
+    res.json(user);
+  } catch (error) {
+    console.error("Ошибка при создании пользователя:", error);
+    res.status(500).json({ error: "Не удалось создать пользователя" });
   }
-  const isPasswordValid = await comparePasswordHash(password, user.password)
-  if (!isPasswordValid) {
-    throw new createHttpError.Unauthorized()
-  }
-  setToken(res, {
-    id: user.id,
-    role: user.role,
-  })
-})
+});
+
 
 usersRouter.post('/logout', verifyToken, async (req, res) => {
   res.clearCookie('token')
