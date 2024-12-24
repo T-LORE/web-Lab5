@@ -109,7 +109,7 @@ usersRouter.delete('/:id', verifyToken, isSelf, async (req, res) => {
   res.sendStatus(200)
 })
 
-const defaultLessons = require('../../db/defaultLessons.ts');
+const defaultLessons = require('./defaultLessons');
 
 usersRouter.post('/', verifyToken, isAdmin, async (req, res) => {
   const { email, password, role, name } = await userCreateSchema.parseAsync(
