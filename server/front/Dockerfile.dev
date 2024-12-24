@@ -7,14 +7,17 @@ WORKDIR /app
 # Копируем package.json и package-lock.json
 COPY package.json package-lock.json ./
 
+# Устанавливаем зависимости
+RUN npm install
+
 # Копируем весь проект
 COPY . .
 
-# Устанавливаем зависимости
-RUN npm install
+# !!!!! Собираем проект для продакшена !!!!!
+RUN npm run build
 
 # Открываем порт для Next.js
 EXPOSE 443
 
-# Команда запуска сервера разработки
+# Команда запуска сервера в режиме продакшена
 CMD ["npm", "run", "start"]
