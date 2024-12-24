@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { createFirstCard, deleteFirstCard, updateFirstCard, getFistCards } from "../../api/cardApi";
 import ButtonLogout from "../components/ButtonLogout/ButtonLogout";
 
-export default function FirstCardList({onCardAdd, onRemoveCard }) {
+export default function FirstCardList() {
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [list, setList] = useState(true);
